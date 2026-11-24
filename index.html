@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYNTRAF</title>
+<meta name="description" content="SYNTRAF mesure en continu la perte, la gigue et la latence entre tous vos sites. Installation hors ligne : Linux, Windows, macOS.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script src="release.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#install" data-i18n="skip">Aller à l'installation</a>
+
+<header class="top">
+  <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-lang="fr" lang="fr">Français</button>
+    <button type="button" data-lang="en" lang="en">English</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>SYNTRAF</h1>
+      <p class="tagline" data-i18n="tagline">La perte, la gigue et la latence entre tous vos sites, mesurées en continu.</p>
+    </div>
+    <svg class="mesh" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 220" role="img" aria-labelledby="mesh-title">
+      <title id="mesh-title" data-i18n="meshTitle">Cinq sondes qui se mesurent deux à deux</title>
+      <g class="links">
+        <path id="l1" d="M60 60 L300 40"/><path id="l2" d="M60 60 L180 170"/><path id="l3" d="M300 40 L180 170"/>
+        <path id="l4" d="M60 60 L40 190"/><path id="l5" d="M40 190 L180 170"/><path id="l6" d="M300 40 L330 160"/>
+        <path id="l7" d="M330 160 L180 170"/><path id="l8" d="M60 60 L330 160"/>
+      </g>
+      <g class="readings" aria-hidden="true">
+        <text x="168" y="40">12 ms</text><text x="236" y="112">0,2 %</text><text x="70" y="134">3 ms</text>
+      </g>
+      <g class="packets" aria-hidden="true">
+        <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath xlink:href="#l1"/></animateMotion></circle>
+        <circle r="4"><animateMotion dur="1.9s" begin="0.7s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1"><mpath xlink:href="#l3"/></animateMotion></circle>
+        <circle r="4"><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite"><mpath xlink:href="#l5"/></animateMotion></circle>
+        <circle r="4"><animateMotion dur="3.1s" begin="1.2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1"><mpath xlink:href="#l8"/></animateMotion></circle>
+        <circle r="4"><animateMotion dur="1.6s" begin="0.4s" repeatCount="indefinite"><mpath xlink:href="#l6"/></animateMotion></circle>
+      </g>
+      <g class="nodes">
+        <circle cx="60" cy="60" r="9"/><circle cx="300" cy="40" r="9"/><circle cx="180" cy="170" r="9"/>
+        <circle cx="40" cy="190" r="9"/><circle cx="330" cy="160" r="9"/>
+      </g>
+    </svg>
+  </section>
+
+  <section id="install" class="install" aria-labelledby="install-title">
+    <h2 id="install-title" data-i18n="installTitle">Installer</h2>
+
+    <fieldset class="choice">
+      <legend data-i18n="roleLegend">Cette machine sera</legend>
+      <div class="options">
+        <label><input type="radio" name="role" value="server"><span><b data-i18n="roleServer">le serveur</b><small data-i18n="roleServerHint">interface web, VictoriaMetrics et Grafana</small></span></label>
+        <label><input type="radio" name="role" value="probe"><span><b data-i18n="roleProbe">une sonde</b><small data-i18n="roleProbeHint">mesure vers les autres sondes</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="choice">
+      <legend data-i18n="platformLegend">Sur</legend>
+      <div class="options platforms">
+        <label><input type="radio" name="platform" value="debian"><span><b>Debian, Ubuntu</b></span></label>
+        <label><input type="radio" name="platform" value="rhel"><span><b>RHEL, Rocky, Alma</b></span></label>
+        <label><input type="radio" name="platform" value="alpine"><span><b>Alpine</b></span></label>
+        <label><input type="radio" name="platform" value="windows"><span><b>Windows</b></span></label>
+        <label><input type="radio" name="platform" value="macos"><span><b>macOS</b><small data-i18n="macosHint">Apple silicon</small></span></label>
+      </div>
+    </fieldset>
+
+    <div id="procedure" class="procedure" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><span data-i18n="footVersion">Version</span> <span id="version">—</span>.
+    <a href="https://github.com/lbsou/syntraf" data-i18n="footSource">Code source et documentation</a>.
+    <a href="https://github.com/lbsou/iperf3v">iperf3v</a>.</p>
+</footer>
+<noscript><p class="noscript">Les archives sont dans les releases GitHub : https://github.com/lbsou/syntraf/releases</p></noscript>
+</body>
+</html>

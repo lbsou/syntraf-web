@@ -1,0 +1,137 @@
+/* SYNTRAF : page d'installation. Une colonne, alignée à gauche ; le seul élément animé est le maillage. */
+:root {
+  --paper: #F1F4F2;
+  --ink: #15303A;
+  --muted: #5B7078;
+  --rule: #CBD6D3;
+  --signal: #0E7A6C;
+  --packet: #E8A100;
+  --code-bg: #E3EAE7;
+  --sans: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--sans);
+}
+a { color: var(--signal); text-underline-offset: 0.18em; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--packet); outline-offset: 2px; border-radius: 2px; }
+
+.skip { position: absolute; left: -999px; top: 0.5rem; background: var(--ink); color: var(--paper); padding: 0.4rem 0.8rem; }
+.skip:focus { left: 0.5rem; }
+
+main, .top, .foot { width: min(100% - 2.5rem, var(--measure)); margin-inline: auto; }
+
+/* Langue */
+.top { display: flex; justify-content: flex-end; padding-top: 1.25rem; }
+.lang { display: flex; gap: 0.25rem; }
+.lang button {
+  font: inherit; font-size: 0.875rem; color: var(--muted); background: none; border: 0;
+  padding: 0.2rem 0.5rem; cursor: pointer; border-radius: 2px;
+}
+.lang button[aria-pressed="true"] { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 0.3em; }
+
+/* Accueil : le nom, une phrase, le maillage */
+.hero { display: grid; grid-template-columns: 1fr minmax(0, 20rem); align-items: center; gap: 1.5rem; padding: 3.5rem 0 3rem; }
+.hero h1 {
+  margin: 0; font-weight: 800; font-size: clamp(3rem, 9vw, 5.25rem); line-height: 0.95; letter-spacing: -0.02em;
+}
+.tagline { margin: 1rem 0 0; font-size: 1.3rem; line-height: 1.4; max-width: 22ch; }
+
+.mesh { width: 100%; height: auto; overflow: visible; }
+.mesh .links path { stroke: var(--rule); stroke-width: 2; fill: none; }
+.mesh .nodes circle { fill: var(--ink); }
+.mesh .packets circle { fill: var(--packet); }
+.mesh .readings text { font: 600 11px var(--mono); fill: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .mesh .packets { display: none; } }
+
+/* Installation */
+.install { padding-bottom: 3rem; border-top: 2px solid var(--ink); }
+.install h2 { font-size: 1.5rem; font-weight: 800; margin: 1.25rem 0 1.5rem; }
+
+.choice { border: 0; margin: 0 0 1.5rem; padding: 0; }
+.choice legend { font-weight: 600; color: var(--muted); margin-bottom: 0.6rem; padding: 0; }
+.options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.options label { position: relative; cursor: pointer; }
+.options input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.options span {
+  display: flex; flex-direction: column; gap: 0.1rem;
+  padding: 0.6rem 0.95rem; border: 2px solid var(--rule); border-radius: 6px; background: var(--paper);
+  transition: border-color 0.12s, background-color 0.12s;
+}
+.options b { font-weight: 600; }
+.options small { color: var(--muted); font-size: 0.85rem; }
+.options label:hover span { border-color: var(--muted); }
+.options input:checked + span { border-color: var(--signal); background: #E2EEEA; }
+.options input:checked + span b { color: var(--signal); }
+.options input:focus-visible + span { outline: 3px solid var(--packet); outline-offset: 2px; }
+
+/* Procédure : une vraie suite d'étapes, donc numérotée */
+.procedure:empty { display: none; }
+.procedure { margin-top: 2rem; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.steps > li { counter-increment: step; position: relative; padding: 0 0 1.75rem 2.75rem; }
+.steps > li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 2px solid var(--ink);
+  display: grid; place-items: center; font-weight: 800; font-size: 0.95rem;
+}
+.steps > li:not(:last-child)::after {
+  content: ""; position: absolute; left: calc(0.95rem - 1px); top: 2.2rem; bottom: 0.3rem; width: 2px; background: var(--rule);
+}
+.steps h3 { font-size: 1.1rem; margin: 0.15rem 0 0.5rem; }
+.steps p { margin: 0.4rem 0; }
+.note { color: var(--muted); font-size: 0.95rem; }
+
+.download {
+  display: inline-flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+  background: var(--ink); color: var(--paper); text-decoration: none; padding: 0.65rem 1rem; border-radius: 6px; font-weight: 600;
+}
+.download:hover { color: var(--paper); background: var(--signal); }
+.download small { font-weight: 400; opacity: 0.8; }
+
+.cmd { position: relative; margin: 0.6rem 0; }
+.cmd pre {
+  margin: 0; padding: 0.8rem 5.5rem 0.8rem 1rem; background: var(--code-bg); border-radius: 6px;
+  font: 400 0.9rem/1.5 var(--mono); overflow-x: auto; white-space: pre;
+}
+.cmd button {
+  position: absolute; top: 0.45rem; right: 0.45rem; font: 600 0.8rem var(--sans); cursor: pointer;
+  border: 2px solid var(--ink); background: var(--paper); color: var(--ink); border-radius: 4px; padding: 0.2rem 0.55rem;
+}
+.cmd button.done { border-color: var(--signal); color: var(--signal); }
+
+.fields { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0.6rem 0; }
+.fields label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.9rem; color: var(--muted); flex: 1 1 13rem; }
+.fields input {
+  font: 400 0.95rem var(--mono); color: var(--ink); background: #fff; border: 2px solid var(--rule); border-radius: 4px; padding: 0.4rem 0.55rem;
+}
+.fields input:focus { border-color: var(--signal); outline: none; }
+.fields input::placeholder { color: #9AABAF; }
+
+details { margin: 0.5rem 0; }
+summary { cursor: pointer; color: var(--signal); }
+code { font: 400 0.92em var(--mono); background: var(--code-bg); padding: 0.05em 0.3em; border-radius: 3px; overflow-wrap: anywhere; }
+.sha { font: 400 0.8rem var(--mono); overflow-wrap: anywhere; color: var(--muted); }
+
+.after { border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+.after h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+
+.missing { border-left: 4px solid var(--packet); padding: 0.5rem 1rem; background: #FBF3DD; }
+
+.foot { border-top: 1px solid var(--rule); padding: 1.25rem 0 2.5rem; color: var(--muted); font-size: 0.9rem; }
+.noscript { width: min(100% - 2.5rem, var(--measure)); margin: 1rem auto; }
+
+@media (max-width: 40rem) {
+  .hero { grid-template-columns: 1fr; padding-top: 2rem; gap: 1rem; }
+  .mesh { max-width: 20rem; }
+  .steps > li { padding-left: 2.4rem; }
+  .cmd pre { padding: 2.4rem 1rem 0.8rem; }
+}
