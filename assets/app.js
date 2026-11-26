@@ -17,7 +17,7 @@
       offline: "La machine n'a pas accès à Internet ? Copiez l'archive dessus (scp, clé USB) : l'installation se fait sans réseau.",
       orCurl: "Ou directement sur la machine :",
       verify: "Vérifier l'empreinte SHA-256",
-      install: "Installer", installAdmin: "Installer, dans PowerShell lancé en administrateur",
+      install: "Installer", installAdmin: "Installer, dans un terminal (PowerShell ou invite de commandes) lancé en administrateur",
       probeFields: "Indiquez le serveur et le jeton d'enrôlement : ils s'insèrent dans la commande.",
       fServer: "Adresse du serveur", fToken: "Jeton d'enrôlement",
       tokenWhere: "Le jeton s'affiche à la fin de l'installation du serveur ; on le retrouve dans l'interface, Server › Tokens.",
@@ -54,7 +54,7 @@
       offline: "No Internet access on that machine? Copy the archive to it (scp, USB key): the installation needs no network.",
       orCurl: "Or straight on the machine:",
       verify: "Check the SHA-256 digest",
-      install: "Install", installAdmin: "Install, in PowerShell run as administrator",
+      install: "Install", installAdmin: "Install, in a terminal (PowerShell or Command Prompt) run as administrator",
       probeFields: "Enter the server and the enrollment token: they go into the command.",
       fServer: "Server address", fToken: "Enrollment token",
       tokenWhere: "The token is shown at the end of the server installation, and in the interface under Server › Tokens.",
@@ -105,10 +105,11 @@
     if (!v) return placeholder;
     return /^[A-Za-z0-9._:@\/-]+$/.test(v) ? v : "'" + v.replace(/'/g, "'\\''") + "'";
   }
-  function psArg(v, placeholder) {
+  // install.cmd passe ses paramètres à PowerShell (-File) : guillemets doubles, retirés par cmd.exe comme par PowerShell
+  function cmdArg(v, placeholder) {
     v = v.trim();
     if (!v) return placeholder;
-    return /^[A-Za-z0-9._:@\/-]+$/.test(v) ? v : "'" + v.replace(/'/g, "''") + "'";
+    return /^[A-Za-z0-9._:@\/-]+$/.test(v) ? v : '"' + v.replace(/"/g, "") + '"';
   }
 
   function render() {
@@ -154,11 +155,11 @@
     var args = "";
     if (role === "probe") {
       var ps = T[state.lang].srv, pt = T[state.lang].tok;
-      args = win ? " -Server " + psArg(state.server, ps) + " -Token " + psArg(state.token, pt)
+      args = win ? " -Server " + cmdArg(state.server, ps) + " -Token " + cmdArg(state.token, pt)
                  : " --server " + shellArg(state.server, ps) + " --token " + shellArg(state.token, pt);
     }
     html += cmd(win
-      ? "tar -xf " + f.name + "\ncd " + dir + "\npowershell -ExecutionPolicy Bypass -File .\\install.ps1" + args
+      ? "tar -xf " + f.name + "\ncd " + dir + "\n.\\install.cmd" + args
       : "tar xzf " + f.name + "\ncd " + dir + "\nsudo ./install.sh" + args);
     html += '<p class="note">' + t(role === "server" ? "serverInstalls" : "probeInstalls") + "</p>";
     if (role === "probe") html += '<p class="note">' + t("tokenWhere") + "</p>";
@@ -178,7 +179,7 @@
     html += "</ol>";
 
     html += '<div class="after"><details><summary>' + t("update") + "</summary><p>" +
-      t("updateText", { un: code(win ? ".\\uninstall.ps1" : "sudo ./uninstall.sh"), purge: code(win ? "-Purge" : "--purge") }) +
+      t("updateText", { un: code(win ? ".\\uninstall.cmd" : "sudo ./uninstall.sh"), purge: code(win ? "-Purge" : "--purge") }) +
       "</p></details></div>";
 
     box.innerHTML = html;

@@ -1,48 +1,48 @@
 // Généré par tools/update_release.py : ne pas modifier à la main.
 window.SYNTRAF_RELEASE = {
-  "version": "0.45.33",
-  "tag": "v0.45.33",
-  "base": "https://github.com/lbsou/syntraf/releases/download/v0.45.33/",
+  "version": "0.45.34",
+  "tag": "v0.45.34",
+  "base": "https://github.com/lbsou/syntraf/releases/download/v0.45.34/",
   "files": {
     "server/linux-x86_64": {
-      "name": "syntraf-server-0.45.33-linux-x86_64.tar.gz",
-      "size": 547010505,
-      "sha256": "4998935bfdc3c65a2fa2fccf37dc482cf56d85ba6a9ecd28e7f2e3035113f425"
+      "name": "syntraf-server-0.45.34-linux-x86_64.tar.gz",
+      "size": 547010976,
+      "sha256": "ac38a46def39684357cfae3b36cf0bd35118231bdad98e57df978cbe456b4358"
     },
     "probe/linux-x86_64": {
-      "name": "syntraf-probe-0.45.33-linux-x86_64.tar.gz",
-      "size": 43829513,
-      "sha256": "18cd2c803d45a80f5e25c19a3fbef9dc1a2a89f43ff2d45c23d165763b1f8edd"
+      "name": "syntraf-probe-0.45.34-linux-x86_64.tar.gz",
+      "size": 43829700,
+      "sha256": "05e1c5bd330f5fd130ce6daa81c60c7396b4d9bb489dbd1370976f45afe29fa7"
     },
     "server/linux-musl-x86_64": {
-      "name": "syntraf-server-0.45.33-linux-musl-x86_64.tar.gz",
-      "size": 540701649,
-      "sha256": "b698a06e7851faba63c1f39e647bb45870c3b7aafcff87ccacb22dc5a1a235dc"
+      "name": "syntraf-server-0.45.34-linux-musl-x86_64.tar.gz",
+      "size": 540701447,
+      "sha256": "4e809d39e3c5fe0d17aa2fd61084298e452e49012570bde2c56fcad5297c6b32"
     },
     "probe/linux-musl-x86_64": {
-      "name": "syntraf-probe-0.45.33-linux-musl-x86_64.tar.gz",
-      "size": 36507397,
-      "sha256": "68c0161692e9629d58d694e81b02eaf8de7a4dd6f2ea7cd7a7071521961a86d0"
+      "name": "syntraf-probe-0.45.34-linux-musl-x86_64.tar.gz",
+      "size": 36507584,
+      "sha256": "23b051b384e38c507114d44142087ea198cdd65948daf9ebf5a128eafe521e29"
     },
     "server/windows-x86_64": {
-      "name": "syntraf-server-0.45.33-windows-x86_64.zip",
-      "size": 536232112,
-      "sha256": "e0a2cef2f24f9039859ea66fa0a400b3388707747e6d875c5e2975e0beb484f5"
+      "name": "syntraf-server-0.45.34-windows-x86_64.zip",
+      "size": 536233043,
+      "sha256": "881457b26cda77cfe25e881c663e8bfa04cc4f65ced4cacab22ead463c253462"
     },
     "probe/windows-x86_64": {
-      "name": "syntraf-probe-0.45.33-windows-x86_64.zip",
-      "size": 31755465,
-      "sha256": "32f40b3ab7e83d6b1c8bee84c24895b997c957a056e1d185e3a82cec4e6006af"
+      "name": "syntraf-probe-0.45.34-windows-x86_64.zip",
+      "size": 31756304,
+      "sha256": "b3166d1edf5ad2585d9ce15760113eff8f7a465a062f246ef160ee2f61198b4e"
     },
     "server/macos-arm64": {
-      "name": "syntraf-server-0.45.33-macos-arm64.tar.gz",
-      "size": 519661540,
-      "sha256": "92d186ea985d1deb291efbf9fd728c02cde4aca8286a836f36b9833540caf7ab"
+      "name": "syntraf-server-0.45.34-macos-arm64.tar.gz",
+      "size": 519661665,
+      "sha256": "05bcd33d93ac7f71128c6753a36025ae9cec89fd8f0147c2785e8ee6291c07e1"
     },
     "probe/macos-arm64": {
-      "name": "syntraf-probe-0.45.33-macos-arm64.tar.gz",
-      "size": 31367880,
-      "sha256": "9cc2a3f189d702f56d7310954bee353e2e5410d924e039eb2cc9b15160986e67"
+      "name": "syntraf-probe-0.45.34-macos-arm64.tar.gz",
+      "size": 31368019,
+      "sha256": "f332874900cf55108c94f2bfe2ba0f4e16699c1b6c494d996c00fd54c8d21479"
     }
   }
 };
